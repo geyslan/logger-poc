@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/geyslan/logger-poc/logger"
+	logger "github.com/geyslan/logger-poc/logger/logrus"
 )
 
 const (
