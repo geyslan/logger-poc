@@ -39,7 +39,7 @@ func generateModLogs(log *logger.Logger) {
 func generatePkgLogs(log *logger.Logger) {
 	log.WarnfPkg("%d %s", 4, "test", errors.New("new warn").Error())
 	log.WarnfPkg("%d %s", 5, "test", errors.New("new warn").Error())
-	log.WarnfPkg("%d %s", 6, "test", errors.New("new error").Error())
+	log.WarnfPkg("%d %s", 6, "test", errors.New("new warn").Error())
 }
 
 func main() {

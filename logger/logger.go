@@ -78,6 +78,7 @@ func (l *Logger) ConfigureMod(output io.Writer, modules uint64) {
 	log.AddHook(&writer.Hook{
 		Writer: output,
 		LogLevels: []log.Level{
+			log.InfoLevel,
 			log.WarnLevel,
 			log.ErrorLevel,
 			log.FatalLevel,
@@ -94,6 +95,7 @@ func (l *Logger) ConfigurePkg(output io.Writer, pkgs ...string) {
 	log.AddHook(&writer.Hook{
 		Writer: output,
 		LogLevels: []log.Level{
+			log.InfoLevel,
 			log.WarnLevel,
 			log.ErrorLevel,
 			log.FatalLevel,
