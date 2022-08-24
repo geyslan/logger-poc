@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	logger "github.com/geyslan/logger-poc/logger/zap"
+	"github.com/geyslan/logger-poc/outerpackage"
 )
 
 func generateLogs(log *logger.Logger) {
@@ -29,6 +30,15 @@ func generateLogs(log *logger.Logger) {
 	log.Debug("debug message 1")
 }
 
+func generateLogsOuter(log *logger.Logger) {
+	fmt.Println()
+	fmt.Println(strings.Repeat("-", 5), "generateLogs()")
+
+	log.Debug("1 Debbuging from main package")
+	log.Debug("2 Debbuging from main package")
+	outerpackage.Log(log)
+}
+
 func dumpMetrics(log *logger.Logger) {
 	fmt.Println()
 	fmt.Println(strings.Repeat(">", 5), "Dump LogCount")
@@ -46,4 +56,8 @@ func main() {
 
 	infoLogger := logger.New(os.Stdout, logger.InfoLevel)
 	generateLogs(infoLogger)
+
+	filteredLogger := logger.New(os.Stdout, logger.DebugLevel, "outerpackage")
+	generateLogsOuter(filteredLogger)
+	dumpMetrics(filteredLogger)
 }

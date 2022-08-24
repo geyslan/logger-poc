@@ -104,9 +104,15 @@ func getCallerInfo(skip int) (pkg, file string, line int) {
 	lastSlash := strings.LastIndexByte(funcName, '/')
 	if lastSlash < 0 {
 		lastSlash = 0
+	} else {
+		lastSlash++
 	}
-	firstDot := strings.Index(funcName[lastSlash:], ".") + lastSlash
-	pkg = funcName[:firstDot]
+	lastDot := strings.LastIndexByte(funcName, '.')
+	pkg = funcName[lastSlash:lastDot]
+	// empty function (from a receiver)
+	if possibleLastDot := strings.LastIndexByte(pkg, '.'); possibleLastDot != -1 {
+		pkg = pkg[0:possibleLastDot]
+	}
 
 	return pkg, file, line
 }
